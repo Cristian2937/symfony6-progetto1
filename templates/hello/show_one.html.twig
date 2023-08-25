@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block title %}Show One{% endblock %}
+
+
+{% block name %}
+
+{% for messaggio in messaggi %}
+<li>{{ messaggio }}</li>
+{% endfor %}
+ 
+{% endblock %}
