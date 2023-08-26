@@ -1,19 +1,17 @@
-{% extends "base.html.twig" %}
+{% extends "general_template/base.html.twig" %}
+{% block title %}Index{% endblock %}
 
-{% block name %}
+{% block body %}
+<div>
 
-{% for messaggio in messaggi|slice(0,limite) %}
-    <div>{{messaggio.message }}</div>
-    
-    {% if date(messaggio.created) < date('-1year') %}
-    
-    <div><b>Oltre 1 anno</b></div>
-    
-    {% else %}
-    <div>{{messaggio.created|date("d/m/Y")}} </div>
-    {% endif %}
-    
+{% for key,messaggio in messaggi|slice(0,limite) %}
+
+    <div><a href="{{path('app_show_one', {id:key})}}">{{messaggio.message}}</a></div>
+
+    {% include "hello/_message.html.twig" %}
     
 {% endfor %}
+
+</div>
 
 {% endblock %}

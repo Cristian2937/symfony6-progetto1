@@ -2,10 +2,23 @@
 {% block title %}Show One{% endblock %}
 
 
-{% block name %}
+{% block body %}
+<div>
+    <b>The current message is:</b>
+</div>
 
-{% for messaggio in messaggi %}
-<li>{{ messaggio }}</li>
-{% endfor %}
+<div>
+    {{messaggi.message}}
+    <br>
+    <span style='color:grey'>Created:</span>{{messaggi.created|date('d/m/Y')}}
+</div>
+<div><a href='{{path('app_hello')}}'>Torna all&apos;index</a></div>
+
+{# {% for messaggio in messaggi %}
+<div>
+<li>{{messaggio.message}}</li>
+    <li>{{ messaggio.created|date('d/m/Y')}}</li>
+</div>
+{% endfor %} #}
  
 {% endblock %}

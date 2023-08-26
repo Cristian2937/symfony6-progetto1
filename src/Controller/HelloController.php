@@ -34,7 +34,7 @@ class HelloController extends AbstractController
     public function showOne(int $id): Response
     {
         return $this->render('hello/show_one.html.twig',[
-            "messaggi" => $this->messages,
+            "messaggi" => $this->messages[$id],
         ]);
         //return new Response($this->messages[$id]);
     }
