@@ -27,7 +27,6 @@ class HelloController extends AbstractController
         return new Response(
             implode(",",array_slice($this->messages, 0, $limit))
         );
-       // return new Response("Hello World!");
     }
 
     #[Route('/messages/{id<\d+>}', name:'app_show_one')]
