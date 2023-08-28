@@ -21,14 +21,27 @@ class MicroPostController extends AbstractController
         // $microPost1->setCreated(new DateTime());
 
         // $microPost->save($microPost1,true);
+        /*
+            E' POSSIBILE TROVARE I RECORD E FARLI VEDERE IN PAGINA
+            ATTRAVERSO IL METODO FIND() DEL REPOSITORY CHE CERCA
+            IN BASE ALL'ID FORNITO
+        */
         $post = $microPost->find(4)->setText("New post updated");
         $microPost->save($post,true);
-
-        //dd($microPost->findAll());
 
         return $this->render('micro_post/index.html.twig', [
             'controller_name' => 'MicroPostController',
             "posts" => $microPost->findAll(),
         ]);
+    }
+
+    #[Route('/micro/post/show/{id<\d+>}', name: 'app_micro_post_show',methods:['GET'])]
+    public function showOne(int $id, MicroPostRepository $microPostOne): Response
+    {
+        //dd($microPostOne->find($id));
+        return $this->render('micro_post/show.html.twig',[
+            'post'=>$microPostOne->find($id),
+            ]
+        );
     }
 }
