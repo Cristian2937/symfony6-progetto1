@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\MicroPost;
+use App\Form\MicroPostType;
 use App\Repository\MicroPostRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,20 +53,42 @@ class MicroPostController extends AbstractController
     {
 
         $microPost = new MicroPost();
-        $form = $this->createFormBuilder($microPost)
-        ->add('title')
-        ->add('text')
-        ->add('Submit', SubmitType::class)
-        ->getForm();
+        $form = $this->createForm(MicroPostType::class,$microPost);
+        
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $post = $form->getData();
             $post->setCreated(new DateTime());
-            //dd($post);
+            
             $posts->save($post,true);
             
             $this->addFlash('success','Post saved correctly');
+            return $this->redirectToRoute('app_micro_post');
+        }
+
+        return $this->renderForm('micro_post/add.html.twig',
+            [
+                'form' => $form
+            ]
+        );
+    }
+
+    #[Route('/micro/post/{id}/edit', name:'app_micro_post_edit',methods:['GET','POST'])]
+    public function edit(int $id,Request $request, MicroPostRepository $posts): Response
+    {
+        $found = $posts->findOneBy(['id' => $id ]);
+
+        $form = $this->createForm(MicroPostType::class,$found);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $post = $form->getData();
+
+            $posts->save($post,true);
+            
+            $this->addFlash('success','Post updated correctly');
             return $this->redirectToRoute('app_micro_post');
         }
 
