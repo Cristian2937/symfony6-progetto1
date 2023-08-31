@@ -4,6 +4,10 @@
 {% block body %}
 
 <div>
+    <a href='{{path('app_micro_post_add')}}'>Create new Post</a>
+</div>
+
+<div>
     {% for post in posts %}
         <div class="flex">
         <h2><a href="{{ path('app_micro_post_show',{id:post.id})}}">{{post.title}}</a></h2>
