@@ -29,8 +29,6 @@ class MicroPostController extends AbstractController
             ATTRAVERSO IL METODO FIND() DEL REPOSITORY CHE CERCA
             IN BASE ALL'ID FORNITO
         */
-        $post = $microPost->find(4)->setText("New post updated");
-        $microPost->save($post,true);
 
         return $this->render('micro_post/index.html.twig', [
             'controller_name' => 'MicroPostController',
