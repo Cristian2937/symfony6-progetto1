@@ -2,12 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}
-        {% if controller_name is null %}
-        Welcome!
-        {% else %}
-        Welcome! | {{controller_name}}
-        {% endif %}
+        <title>
+        {% block title %}
+            {{controller_name}}
         {% endblock %}
         </title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
@@ -25,7 +22,10 @@
     <body class="bg-slate-200 m-5">
 <div class="text-right">
             <div class="text-sm text-gray-400">
-                Login/Registration
+                <div>Login/Registration</div>
+                <div>
+    <a href='{{path('app_micro_post_add')}}' class="text-gray-800 hover:text-white underline">Create new Post</a>
+</div>
             </div>
     <div class="w-full md:w-2/3 mx-auto mb-4 flex justify-between items-center">
         <div class="text-4xl">

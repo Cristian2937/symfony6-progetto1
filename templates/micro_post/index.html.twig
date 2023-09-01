@@ -3,21 +3,8 @@
 
 {% block body %}
 
-<div>
-    <a href='{{path('app_micro_post_add')}}' class="text-gray-800 hover:text-white underline">Create new Post</a>
-</div>
-
-<div>
-    {% for post in posts %}
-        <div class="my-5 bg-slate-100 w-80 text-center">
-            <h2><a href="{{ path('app_micro_post_show',{id:post.id})}}" class="text-gray-800 hover:text-white underline">{{post.title}}</a></h2>
-            <a href='{{path('app_micro_post_edit', {id:post.id})}}'>Modifica</a>
-            <div>{{post.text}}
-                <br>
-                    <span style="color:grey;">Created:</span>{{post.created|date('d/m/Y')}}
-            </div>
-        </div>
-    {% endfor %}
+<div class="flex flex-wrap flex-col">
+    {% include "micro_post/_post_list.html.twig" %}
 </div>
 
 {% endblock %}

@@ -41,6 +41,7 @@ class MicroPostController extends AbstractController
     {
         //dd($microPostOne->find($id));
         return $this->render('micro_post/show.html.twig',[
+            'controller_name' => 'MicroPostControllerShow',
             'post'=>$microPostOne->find($id),
             ]
         );
@@ -90,7 +91,7 @@ class MicroPostController extends AbstractController
             return $this->redirectToRoute('app_micro_post');
         }
 
-        return $this->renderForm('micro_post/add.html.twig',
+        return $this->renderForm('micro_post/edit.html.twig',
             [
                 'form' => $form
             ]
