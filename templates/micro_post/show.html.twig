@@ -6,10 +6,10 @@
         <h1>{{post.title}}</h1>
         <div>{{post.text}}
         <br>
-            <span style="color:grey;">Created:</span>{{post.created|date('d/m/Y')}}
+            <span style="color:grey">Created:</span>{{post.created|date('d/m/Y')}}
         </div>
         </div>
-        <a href="{{ path('app_micro_post')}}">Torna indietro</a>
+        <a href="{{ path('app_micro_post')}}" class="underline hover:text-white">Torna indietro</a>
     </div>
 
 {% endblock %}
