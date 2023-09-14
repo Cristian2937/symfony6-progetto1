@@ -4,6 +4,8 @@
 {% block body %}
 <div>
 
+    {{profile.user.email}}
+
 {% for key,messaggio in messaggi|slice(0,limite) %}
 
     <div><a href="{{path('app_show_one', {id:key})}}">{{messaggio.message}}</a></div>
